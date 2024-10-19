@@ -1,4 +1,5 @@
 import pygame
+import sys
 from constants import *
 from player import *
 from asteroid import Asteroid
@@ -30,6 +31,11 @@ def main():
 
         for obj in updatable:
             obj.update(dt)
+
+        for obj in asteroids:
+            if obj.detect_collision(player):
+                print("Game over!")
+                sys.exit()                
 
         screen.fill("black")
 
