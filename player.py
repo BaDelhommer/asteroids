@@ -45,8 +45,11 @@ class Player(CircleShape):
         if keys[pygame.K_s]:
             self.move(dt * -1)
 
-        if keys[pygame.K_SPACE]:
+        if keys[pygame.K_SPACE] and self.cooldown <= 0:
             self.shoot()
+            self.cooldown = PLAYER_SHOOT_COOLDOWN
+
+        self.cooldown -= dt
     
     def draw(self, screen):
         points = self.triangle()
